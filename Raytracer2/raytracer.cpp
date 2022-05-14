@@ -56,10 +56,10 @@ int main() {
 
     // World
     hittable_list world;
-    loadMesh(world);
+    //loadMesh(world);
     //world.add(make_shared<sphere>(point3(0, 0, -1), 0.5));
-    //world.add(make_shared<sphere>(point3(0, -100.5, -1), 100));
-    //world.add(make_shared<triangle>(point3(-1, -1, -.8), point3(1, -1, -1), point3(0, 1, -1)));
+    world.add(make_shared<sphere>(point3(0, -100.5, -1), 100));
+    world.add(make_shared<triangle>(point3(-1, -1, -.8), point3(1, -1, -1), point3(0, 1, -1)));
 
     // Camera
     camera cam;
@@ -77,7 +77,7 @@ int main() {
                 ray r = cam.get_ray(u, v);
                 pixel_color += ray_color(r, world);
             }
-            //write_color(std::cout, pixel_color, samples_per_pixel);
+            write_color(std::cout, pixel_color, samples_per_pixel);
         }
     }
 
