@@ -19,35 +19,21 @@ void loadMesh(hittable_list world)
             objl::Mesh curMesh = Loader.LoadedMeshes[i];
 
             // loop through mesh and add each triangle to the world 
-            //for (int j = 0; j < curMesh.Indices.size(); j += 3)
-            //{
-            //    point3 p0(
-            //        curMesh.Vertices[curMesh.Indices[j]].Position.X,
-            //        curMesh.Vertices[curMesh.Indices[j]].Position.Y,
-            //        curMesh.Vertices[curMesh.Indices[j]].Position.Z
-            //    );
-            //    point3 p1(
-            //        curMesh.Vertices[curMesh.Indices[j + 1]].Position.X,
-            //        curMesh.Vertices[curMesh.Indices[j + 1]].Position.Y,
-            //        curMesh.Vertices[curMesh.Indices[j + 1]].Position.Z
-            //    );
-            //    point3 p2(
-            //        curMesh.Vertices[curMesh.Indices[j + 2]].Position.X,
-            //        curMesh.Vertices[curMesh.Indices[j + 2]].Position.Y,
-            //        curMesh.Vertices[curMesh.Indices[j + 2]].Position.Z
-            //    );
-            //    std::cout << "p0: " << p0;
-            //    //std::cout << "p1: (%f, %f, %f)" << p1.x(), p1.y(), p1.z();
-            //    //std::cout << "p2: (%f, %f, %f)" << p2.x(), p2.y(), p2.z();
-            //    world.add(make_shared<triangle>(p0, p1, p2));
-            //}
+            
 
-            for (int j = 0; j < curMesh.Indices.size(); j += 3)
+            for (int j = 0; j < curMesh.Vertices.size(); j++)
             {
-                std::cout << "T" << j / 3 << ": " << curMesh.Indices[j] << ", " << curMesh.Indices[j + 1] << ", " << curMesh.Indices[j + 2] << "\n";
+                point3 p0(
+                    curMesh.Vertices[j].Position.X,
+                    curMesh.Vertices[j].Position.Y,
+                    curMesh.Vertices[j].Position.Z
+                );
+                std::cerr << "Vertex " << j << ": ";
+                std::cerr << p0 << std::endl;
             }
         }
     }
+    else std::cerr << "File failed to load";
 }
 
 color ray_color(const ray& r, const hittable& world) {
@@ -82,7 +68,7 @@ int main() {
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
     for (int j = image_height - 1; j >= 0; --j) {
-        std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
+        //std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < image_width; ++i) {
             color pixel_color(0, 0, 0);
             for (int s = 0; s < samples_per_pixel; ++s) {

@@ -473,7 +473,7 @@ namespace objl
 				{
 					if (!meshname.empty())
 					{
-						std::cout
+						std::cerr
 							<< "\r- " << meshname
 							<< "\t| vertices > " << Positions.size()
 							<< "\t| texcoords > " << TCoords.size()
@@ -533,7 +533,7 @@ namespace objl
 						}
 					}
 #ifdef OBJL_CONSOLE_OUTPUT
-					std::cout << std::endl;
+					std::cerr << std::endl;
 					outputIndicator = 0;
 #endif
 				}
@@ -661,7 +661,7 @@ namespace objl
 					pathtomat += algorithm::tail(curline);
 
 #ifdef OBJL_CONSOLE_OUTPUT
-					std::cout << std::endl << "- find materials in: " << pathtomat << std::endl;
+					std::cerr << std::endl << "- find materials in: " << pathtomat << std::endl;
 #endif
 
 					// Load Materials
@@ -670,7 +670,7 @@ namespace objl
 			}
 
 #ifdef OBJL_CONSOLE_OUTPUT
-			std::cout << std::endl;
+			std::cerr << std::endl;
 #endif
 
 			// Deal with last mesh
